@@ -1,4 +1,5 @@
 ## Visual
+![coin base example](./graph.png)
 
 ## Desc
 Automatically track crypto digital assets, the value of your coins. Users will be able to see a graph displaying the current market value of their crypto.
