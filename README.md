@@ -4,3 +4,4 @@ TODOS:
 - [ ] Update the documentation to [this document](https://docs.google.com/document/d/1oIKNWWjSGbVWjsM8AbSm8hMuyo-y9KqhIeiBaR6DfLI/edit?usp=sharing)
 - [ ] Design the layout of the section.
 - [ ] Make a diagram of the persistence layer.
+- [ ] jerry made this edit
