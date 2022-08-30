@@ -25,6 +25,6 @@ Preferences: store the selected cryptocurrencies to track and the user.
 ```java
 class Preferences {
 	Set<Cryptocurrency> currencies;
-	User user;
+	String user;
 }
 ```
