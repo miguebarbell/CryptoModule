@@ -1,5 +1,7 @@
 /.idea/
 /client/.idea/
+/client/node_modules
+/client/package-lock.json
 *.DS_Store
 
 # eclipse project file
