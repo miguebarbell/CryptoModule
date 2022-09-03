@@ -1,4 +1,5 @@
 import com.crypto.server.EndPointTest;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -18,10 +19,10 @@ class CryptoControllerTest {
 	private MockMvc mockMvc;
 
 	@Test
-	@DisplayName("test endpoint")
-	void testStatusOk throws Exception {
+//	@DisplayName("test endpoint")
+	void testStatusOk() {
 		MvcResult response = mockMvc.perform(get("/api/test/"))
-				.andExpect(status().isOk())
+				.andExpect(status().isOk());
 		System.out.println("response = " + response.getResponse());
 	}
 }
