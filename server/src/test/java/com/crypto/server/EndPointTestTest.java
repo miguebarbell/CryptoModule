@@ -1,4 +1,5 @@
-import com.crypto.server.EndPointTest;
+package com.crypto.server;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,11 +8,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-class CryptoControllerTest {
+class EndPointTestTest {
+
 	@Autowired
 	EndPointTest endPointTest;
 
@@ -19,10 +22,10 @@ class CryptoControllerTest {
 	private MockMvc mockMvc;
 
 	@Test
-//	@DisplayName("test endpoint")
-	void testStatusOk() {
+	@DisplayName("test endpoint")
+	void testStatusOk() throws Exception {
 		MvcResult response = mockMvc.perform(get("/api/test/"))
-				.andExpect(status().isOk());
+		                            .andExpect(status().isOk()).andReturn();
 		System.out.println("response = " + response.getResponse());
 	}
 }
