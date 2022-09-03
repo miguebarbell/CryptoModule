@@ -1,0 +1,5 @@
+### GET /api/test/ should respond ok
+GET localhost:8080/api/test/
+
+### GET /api/currencies/
+GET localhost:8080/api/currencies/
