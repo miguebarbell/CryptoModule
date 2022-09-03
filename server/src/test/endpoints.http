@@ -1,0 +1,2 @@
+### GET /api/test/ should respond ok
+GET localhost:8080/api/test/
