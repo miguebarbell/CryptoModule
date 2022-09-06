@@ -1,8 +1,9 @@
 package com.crypto.server.currency;
 
+
 public class Currency {
-	String id;
-	String name;
+	private final String id;
+	private final String name;
 
 	Currency(String id, String name) {
 		this.id = id;
