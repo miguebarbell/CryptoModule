@@ -1,8 +1,7 @@
 package com.crypto.server.user;
 
-import org.bson.types.ObjectId;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
-public interface UserRepository extends CrudRepository<User, ObjectId> {
+public interface UserRepository extends MongoRepository<User, String> {
 
 }

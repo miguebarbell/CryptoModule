@@ -1,3 +1,13 @@
 type Query {
-    firstQuery : String
+    availableCurrencies : [Currency]
+    allUsers : [User]
+}
+
+type Currency {
+    id : String!
+    name : String
+}
+
+type User {
+    user : String!
 }
