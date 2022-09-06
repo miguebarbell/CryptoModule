@@ -25,6 +25,11 @@ public class UserController {
 		return userRepository.findAll();
 	}
 
+	@QueryMapping
+	public User findUser(@Argument String userId) {
+		return userRepository.findById(userId).orElseThrow(() -> new IllegalArgumentException("User not found"));
+	}
+
 	@MutationMapping
 	public String addUser(@Argument String user, @Argument List<String> currencies) {
 		// save or update the current user
