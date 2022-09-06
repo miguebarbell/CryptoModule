@@ -2,6 +2,7 @@ type Query {
     availableCurrencies : [Currency]
     allUsers : [User]
     findUser(userId: String!) : User
+    daily(currency : String!) : String
 }
 
 type Currency {
