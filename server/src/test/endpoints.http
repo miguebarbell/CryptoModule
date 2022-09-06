@@ -3,3 +3,7 @@ GET localhost:8080/api/test/
 
 ### GET /api/currencies/
 GET localhost:8080/api/currencies/
+
+### GET /graphql/
+GET localhost:8080/graphql?query=query allUsers
+content-type: application/json;

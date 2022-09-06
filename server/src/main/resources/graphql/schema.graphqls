@@ -11,3 +11,7 @@ type Currency {
 type User {
     user : String!
 }
+
+type Mutation {
+    addUser(user: String!, currencies: [String]): String
+}

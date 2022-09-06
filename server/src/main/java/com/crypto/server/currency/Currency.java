@@ -9,4 +9,8 @@ public class Currency {
 		this.id = id;
 		this.name = name;
 	}
+
+	public String getId() {
+		return id;
+	}
 }

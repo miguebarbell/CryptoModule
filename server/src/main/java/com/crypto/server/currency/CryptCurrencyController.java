@@ -10,6 +10,7 @@ import java.util.List;
 public class CryptCurrencyController {
 	private final ObjectMapper objectMapper = new ObjectMapper();
 
+
 	@SchemaMapping(typeName = "Query", value = "availableCurrencies")
 	public List<Currency> getCurrencies() {
 		return Helpers.allCurrencies();
