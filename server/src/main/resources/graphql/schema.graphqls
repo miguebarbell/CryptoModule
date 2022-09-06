@@ -1,6 +1,7 @@
 type Query {
     availableCurrencies : [Currency]
     allUsers : [User]
+    findUser(userId: String!) : User
 }
 
 type Currency {
@@ -10,4 +11,9 @@ type Currency {
 
 type User {
     user : String!
+    currencies : [String]
+}
+
+type Mutation {
+    addUser(user: String!, currencies: [String]): String
 }
