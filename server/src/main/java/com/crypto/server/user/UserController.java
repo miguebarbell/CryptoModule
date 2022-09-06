@@ -1,13 +1,13 @@
 package com.crypto.server.user;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.graphql.data.method.annotation.QueryMapping;
+import org.springframework.stereotype.Controller;
 
-@RestController
+@Controller
 public class UserController {
-//	@PostMapping("/users")
-//	public String getUser(@RequestParam(String user)) {
-//		return user;
-//	}
+	//	@SchemaMapping(typeName = "Query", value = "firstQuery")
+	@QueryMapping
+	public String firstQuery() {
+		return "first query";
+	}
 }
