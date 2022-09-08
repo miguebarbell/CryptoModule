@@ -50,8 +50,6 @@ public class CryptCurrencyController {
 	@SchemaMapping(typeName = "Query", value = "news")
 	public List<News> getNews(@Argument List<String> currencies) throws IOException, InterruptedException, JSONException {
 		List<News> news = new ArrayList<>();
-//		News dummyNews = new News("title", "url", "summary", "image", "source");
-//		news.add(dummyNews);
 		String currenciesUri = "";
 		for (int i = 0; i < currencies.size(); i++) {
 			currenciesUri = currenciesUri.concat("CRYPTO:" + currencies.get(i));
