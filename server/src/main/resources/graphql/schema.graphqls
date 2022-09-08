@@ -3,6 +3,7 @@ type Query {
     allUsers : [User]
     findUser(userId: String!) : User
     daily(currency : String!) : String
+    news(currencies : [String]) : [News]
 }
 
 type Currency {
@@ -17,4 +18,12 @@ type User {
 
 type Mutation {
     addUser(user: String!, currencies: [String]): String
+}
+
+type News {
+    title : String
+    url : String
+    summary : String
+    imageUrl : String
+    source : String
 }
