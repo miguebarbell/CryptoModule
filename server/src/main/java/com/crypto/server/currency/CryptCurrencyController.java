@@ -69,7 +69,8 @@ public class CryptCurrencyController {
 			String summary = feed.getJSONObject(i).getString("summary");
 			String imageUrl = feed.getJSONObject(i).getString("banner_image");
 			String source = feed.getJSONObject(i).getString("source");
-			news.add(new News(title, url, summary, imageUrl, source));
+			String date = feed.getJSONObject(i).getString("time_published");
+			news.add(new News(title, url, summary, imageUrl, source, date));
 		}
 		return news;
 	}
