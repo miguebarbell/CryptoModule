@@ -1,6 +1,5 @@
 package com.crypto.server.currency;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.boot.configurationprocessor.json.JSONArray;
 import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.boot.configurationprocessor.json.JSONObject;
@@ -19,32 +18,33 @@ import java.util.List;
 
 @Controller
 public class CryptCurrencyController {
-	private final ObjectMapper objectMapper = new ObjectMapper();
-	//	private final Environment env;
+//	private final ObjectMapper objectMapper = new ObjectMapper();
 	private final String API_KEY;
 	HttpClient httpClient = HttpClient.newHttpClient();
 
 	public CryptCurrencyController(Environment env) {
-//		this.env = env;
 		this.API_KEY = env.getProperty("API_KEY");
 	}
 
 	@SchemaMapping(typeName = "Query", value = "daily")
-	public JSONObject timeSeries(@Argument String currency) throws IOException, InterruptedException, JSONException {
-		// todo: return the neccesary information to the client
+	public List<DailyValue> timeSeries(@Argument String currency) throws IOException, InterruptedException, JSONException {
 		// todo: make a way to create a cache so don't make unnecessary external requests
-
 		URI uri = URI.create("https://www.alphavantage.co/query?function=DIGITAL_CURRENCY_DAILY&symbol="
 				+ currency + "&market=USD" + "&apikey=" + API_KEY);
 		HttpRequest request = HttpRequest.newBuilder().uri(uri).GET().build();
 		HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
 		JSONObject json = new JSONObject(response.body());
-		Object metadata = new JSONObject(String.valueOf(json.get("Meta Data")));
-		System.out.println("metadata.getClass() = " + metadata.getClass());
-		System.out.println("metadata = " + metadata);
-//		System.out.println("Meta Data = " + json.get("Meta Data"));
-//		System.out.println("Time Series = " + json.get("Time Series (Digital Currency Daily)"));
-		return json;
+		Object lastRefreshed = json.getJSONObject("Meta Data").get("6. Last Refreshed");
+		JSONObject timeSeries = json.getJSONObject("Time Series (Digital Currency Daily)");
+		JSONArray names = timeSeries.names();
+		List<DailyValue> dailyValues = new ArrayList<>();
+		for (int i = 0; i < names.length(); i++) {
+			String key = names.getString(i);
+			JSONObject valueJSON = timeSeries.getJSONObject(key);
+			DailyValue dailyValue = new DailyValue(key, valueJSON.getDouble("4b. close (USD)"));
+			dailyValues.add(dailyValue);
+		}
+		return dailyValues;
 	}
 
 	@SchemaMapping(typeName = "Query", value = "news")

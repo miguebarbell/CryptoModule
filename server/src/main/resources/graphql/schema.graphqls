@@ -2,7 +2,7 @@ type Query {
     availableCurrencies : [Currency]
     allUsers : [User]
     findUser(userId: String!) : User
-    daily(currency : String!) : String
+    daily(currency : String) : [DailyValue]
     news(currencies : [String]) : [News]
 }
 
@@ -14,6 +14,11 @@ type Currency {
 type User {
     user : String!
     currencies : [String]
+}
+
+type DailyValue {
+    date : String
+    value : Float
 }
 
 type Mutation {
