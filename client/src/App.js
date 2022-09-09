@@ -9,7 +9,7 @@ import Homepage from "./Pages/Homepage";
 
 function App() {
   // const userFromSecurity = "crypto@maniac.gov";
-  const userFromSecurity = "jerry0@usmc.gov";
+  const userFromSecurity = "jerry@usmc.gov";
 
   const defaultCurrencies = ["ETH", "SOL"];
   const [cryptoUser, setCryptoUser] = useState({username: userFromSecurity, currencies: defaultCurrencies});
