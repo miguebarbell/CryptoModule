@@ -21,17 +21,17 @@ public class UserController {
 	}
 
 	@QueryMapping
-	public List<User> allUsers() {
+	public List<User> cryptoAllUsers() {
 		return userRepository.findAll();
 	}
 
 	@QueryMapping
-	public User findUser(@Argument String userId) {
+	public User cryptoFindUser(@Argument String userId) {
 		return userRepository.findById(userId).orElseThrow(() -> new IllegalArgumentException("User not found"));
 	}
 
 	@MutationMapping
-	public String addUser(@Argument String user, @Argument List<String> currencies) {
+	public String cryptoAddUser(@Argument String user, @Argument List<String> currencies) {
 		// save or update the current user
 		List<String> currenciesMatched = allCurrencies.stream().map(Currency::getId)
 		                                              .filter(

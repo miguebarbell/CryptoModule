@@ -26,7 +26,7 @@ public class CryptCurrencyController {
 		this.API_KEY = env.getProperty("API_KEY");
 	}
 
-	@SchemaMapping(typeName = "Query", value = "daily")
+	@SchemaMapping(typeName = "Query", value = "cryptoDaily")
 	public List<DailyValue> timeSeries(@Argument String currency) throws IOException, InterruptedException, JSONException {
 		// todo: make a way to create a cache so don't make unnecessary external requests
 		URI uri = URI.create("https://www.alphavantage.co/query?function=DIGITAL_CURRENCY_DAILY&symbol="
@@ -47,7 +47,7 @@ public class CryptCurrencyController {
 		return dailyValues;
 	}
 
-	@SchemaMapping(typeName = "Query", value = "news")
+	@SchemaMapping(typeName = "Query", value = "cryptoNews")
 	public List<News> getNews(@Argument List<String> currencies) throws IOException, InterruptedException, JSONException {
 		List<News> news = new ArrayList<>();
 		String currenciesUri = "";
@@ -75,7 +75,7 @@ public class CryptCurrencyController {
 		return news;
 	}
 
-	@SchemaMapping(typeName = "Query", value = "availableCurrencies")
+	@SchemaMapping(typeName = "Query", value = "cryptoAvailableCurrencies")
 	public List<Currency> getCurrencies() {
 		return Helpers.allCurrencies();
 	}
