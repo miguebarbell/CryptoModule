@@ -9,7 +9,7 @@ const Banner = () => {
           height: 400,
           display: 'flex',
           flexDirection: 'column',
-          paddingTop: 25,
+          paddingTop: 12,
           justifyContent: 'space-around'
         }}
      >
@@ -29,7 +29,7 @@ const Banner = () => {
               fontFamily: 'Monsterrat'
             }}
          >
-            Crypto Currency
+            Crypto Tracker
          </Typography>
          <Typography
             variant={'subtitle2'}
@@ -37,10 +37,11 @@ const Banner = () => {
               color: 'darkgrey',
               textTransform: 'capitalize',
               fontFamily: 'Monsterrat',
-              marginBottom:10
+              marginBottom:7,
+              fontSize:19
             }}
          >
-           Get all the info regarding you favorite crypto
+           Get data on your favorite crypto
          </Typography>
        </Box>
        <Carousel/>
