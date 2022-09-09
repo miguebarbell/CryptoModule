@@ -6,10 +6,11 @@ import {
   LinearProgress, Table, TableBody, TableCell,
   TableContainer, TableHead, TableRow,
   TextField,
-  Typography
+  Typography,
+  Pagination
 } from "@mui/material";
 import {useNavigate} from "react-router-dom";
-import {Pagination} from "@mui/lab";
+// import {} from "@mui/lab";
 
 export function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -35,10 +36,8 @@ const CoinsTable = () => {
      }, [curr]
   );
 
-  console.log(coins)
-  console.log(Array.isArray(coins));
-  // console.log(data)
-
+  // console.log(coins)
+  // console.log(Array.isArray(coins));
   const handleSearch = () => {
     return coins.filter(
        (coin) =>
@@ -164,7 +163,12 @@ const CoinsTable = () => {
             display:'flex',
             justifyContent:'center'
           }}
-          count={(handleSearch()?.length /10).toFixed(0)}/>
+          count={parseInt((handleSearch()?.length /10).toFixed(0))}
+       onChange={(_, value) => {
+         setPage(value);
+         window.scroll(0,450);
+       }}
+       />
      </Container>
   )
 }
