@@ -1,5 +1,5 @@
-export const findUser = {
-	"user"      : "crypto@maniac.gov",
+export const findUserr = {
+	"userEmail" : "demo@quintrix.com",
 	"currencies": [
 		"BTC"
 	]

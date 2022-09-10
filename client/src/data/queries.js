@@ -3,13 +3,15 @@ import axios from "axios";
 const API_URL = "http://localhost:8080/graphql";
 
 export const findUser = async (username) => {
+	// console.log(username);
 	const query = `query {
-	cryptoFindUser(userId : "${username}"){
-		user
-		currencies
-	 }
-	}
+		cryptoFindUser(userId : "${username}"){
+			userEmail
+			currencies
+		 }
+		}
 	`;
+	// console.log(query);
 	const result = await axios.post(API_URL, {query});
 	return result.data;
 };
