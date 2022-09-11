@@ -1,7 +1,8 @@
 import {Container} from "@mui/material";
+import {useEffect, useState} from "react";
 import "./App.css";
 import Banner from "./components/Banner";
-import Chart from "./components/chart";
+import Chart from "./components/Chart";
 import CoinsTable from "./components/CoinsTable";
 
 function App() {
@@ -9,6 +10,10 @@ function App() {
   // const userFromSecurity = "jerry@usmc.gov";
   // const userFromSecurity = "";
   const userFromSecurity = "miguel@debloat.us";
+  const [reload, setReload] = useState(true);
+  useEffect(() => {
+    setReload(true);
+  }, [reload]);
   return (
     <Container
       sx={{
@@ -16,11 +21,13 @@ function App() {
         color          : 'black',
         minHeight      : '100vh'
       }}
-    >
-      {/*<Header/>*/}
-      <Chart user={userFromSecurity}/>
-      <Banner/>
-      <CoinsTable/>
+    >{userFromSecurity ?
+      <>
+        <Banner/>
+        <Chart user={userFromSecurity} reload={reload}/>
+        <CoinsTable user={userFromSecurity} reload={setReload}/> </> :
+      <h1>Please Login</h1>
+    }
     </Container>
   );
 

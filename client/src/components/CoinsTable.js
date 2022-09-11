@@ -1,23 +1,29 @@
-import React, {useEffect, useState} from 'react'
-import axios from "axios";
-import {CoinList} from "../config/api";
 import {
   Container,
-  LinearProgress, Table, TableBody, TableCell,
-  TableContainer, TableHead, TableRow,
+  LinearProgress,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
   TextField,
   Typography
 } from "@mui/material";
+import axios from "axios";
+import React, {useEffect, useState} from 'react';
 import {useNavigate} from "react-router-dom";
+import {CoinList} from "../config/api";
+import {createOrUpdateUser, findUser} from "../data/queries";
 
 export function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
-const CoinsTable = () => {
+const CoinsTable = ({user, reload}) => {
   const [coins, setCoins] = useState([]);
   const [loading, setLoading] = useState();
-  const [search, setSearch] = useState('')
+  const [search, setSearch] = useState('');
   const history = useNavigate();
 
   const curr = 'usd';
@@ -29,32 +35,56 @@ const CoinsTable = () => {
     setLoading(false);
   }
   useEffect(() => {
-       fetchCoins();
-     }, [curr]
+              fetchCoins();
+              findUser(user).then(response => {
+                setSelectedCurrencies(response.data.cryptoFindUser.currencies);
+                // console.log("getting preferences from server");
+              });
+            }, [curr]
   );
 
-  console.log(coins)
-  console.log(Array.isArray(coins));
-  // console.log(data)
 
   const handleSearch = () => {
     return coins.filter(
-       (coin) =>
-          coin.name.toLowerCase().includes(search) ||
-          coin.symbol.toLowerCase().includes(search)
+      (coin) =>
+        coin.name.toLowerCase().includes(search) ||
+        coin.symbol.toLowerCase().includes(search)
     );
   };
 
+  const [selectedCurrencies, setSelectedCurrencies] = useState([]);
+  // useEffect(()=> {
+  //   handleSearch()
+  // },[selectedCurrencies])
+
+  const handleUpdateCurrencies = (symbol) => {
+    // todo: put a limit to the number of currencies to follow
+    if (selectedCurrencies.filter(currency => currency === symbol.toUpperCase()).length === 1) {
+      // console.log("deleting currency " + symbol);
+      const index = selectedCurrencies.findIndex(currency => currency === symbol.toUpperCase());
+      selectedCurrencies.splice(index, 1);
+      setSelectedCurrencies(selectedCurrencies);
+      reload(false);
+    } else {
+      // console.log("adding " + symbol);
+      selectedCurrencies.push(symbol.toUpperCase());
+      setSelectedCurrencies(selectedCurrencies);
+      reload(false);
+    }
+    const response = createOrUpdateUser(user, selectedCurrencies);
+    // response.then(() => setHackyUpdate(hackyUpdate + 1))
+  };
+  // const [hackyUpdate, setHackyUpdate] = useState(0)
   return (
-     <Container style={{textAlign: 'center'}}
-                sx={{marginTop: 5}}>
-       <Typography variant={'h4'}
-                   style={{margin: 18, fontFamily: 'Monsterrat'}}>
-         Cryptocurrency Prices by Market Cap
-       </Typography>
-       <TextField label={'search for crypto..'}
-                  variant={'outlined'}
-                  sx={{marginBottom: 5, width: '100%'}}
+    <Container style={{textAlign: 'center'}}
+               sx={{marginTop: 5}}>
+      <Typography variant={'h4'}
+                  style={{margin: 18, fontFamily: 'Monsterrat'}}>
+        {/*Cryptocurrency Prices by Market Cap*/}
+      </Typography>
+      <TextField label={'search for crypto..'}
+                 variant={'outlined'}
+                 sx={{marginBottom: 5, width: '100%'}}
                   onChange={(e) => setSearch(e.target.value)}
        />
        <TableContainer>
@@ -85,21 +115,22 @@ const CoinsTable = () => {
                       const profit = row.price_change_percentage_24h > 0;
                       return (
                          <TableRow
-                            onClick={() => history(`/coins/${row.id}`)}
-                            key={row.name}
-                         sx={{
-                           cursor:'pointer',
-                           '&:hover': {
-                             background:'#dfe6e0'
-                           }
-                         }}
+                           onClick={() => handleUpdateCurrencies(row.symbol)}
+                           key={row.name}
+                           sx={{
+                             cursor    : 'pointer',
+                             background: (selectedCurrencies.filter(currency => currency === row.symbol.toUpperCase()).length === 1) && '#D9F8C4',
+                             '&:hover' : {
+                               background: '#DFE6E0'
+                             }
+                           }}
                          >
                            <TableCell
                               component={'th'}
                               scope={'row'}
                               sx={{
                                 display: 'flex',
-                                gap: 2
+                                gap    : 2
                               }}
                            >
                                <img
