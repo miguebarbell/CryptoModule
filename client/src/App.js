@@ -4,6 +4,7 @@ import "./App.css";
 import Banner from "./components/Banner";
 import Chart from "./components/Chart";
 import CoinsTable from "./components/CoinsTable";
+import PleaseLogin from "./components/PleaseLogin";
 
 function App() {
   // const userFromSecurity = "crypto@maniac.gov";
@@ -26,7 +27,7 @@ function App() {
         <Banner/>
         <Chart user={userFromSecurity} reload={reload}/>
         <CoinsTable user={userFromSecurity} reload={setReload}/> </> :
-      <h1>Please Login</h1>
+      <PleaseLogin/>
     }
     </Container>
   );

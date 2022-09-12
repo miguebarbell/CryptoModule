@@ -1,10 +1,11 @@
+export const divStyles = {
+	display       : "flex",
+	flexDirection : "column",
+	alignItems    : "center",
+	justifyContent: "center"
+};
 const AddCurrencies = () => {
-	const divStyles = {
-		display       : "flex",
-		flexDirection : "column",
-		alignItems    : "center",
-		justifyContent: "center"
-	};
+
 	return (
 		<div style={divStyles}>
 			<h1>Ops! you are not watching any currency yet!</h1>
