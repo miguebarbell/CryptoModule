@@ -21,13 +21,18 @@ public class UserController {
 	}
 
 	@QueryMapping
-	public List<User> cryptoAllUsers() {
-		return userRepository.findAll();
+	public Iterable<CryptoUser> cryptoAllUsers() {
+		Iterable<CryptoUser> users = userRepository.findAll();
+//		users.forEach(user -> System.outuser.getUserEmail());
+		return users;
+
 	}
 
 	@QueryMapping
-	public User cryptoFindUser(@Argument String userId) {
+	public CryptoUser cryptoFindUser(@Argument String userId) {
 		return userRepository.findById(userId).orElseThrow(() -> new IllegalArgumentException("User not found"));
+//		CryptoUser foundUser = userRepository.findById(userId).get();
+//		return foundUser;
 	}
 
 	@MutationMapping
@@ -37,8 +42,9 @@ public class UserController {
 		                                              .filter(
 				                                              id -> currencies.stream().filter(id::equals).count() == 1)
 		                                              .toList();
-		User newUser = new User(user, currenciesMatched);
+		CryptoUser newUser = new CryptoUser(user, currenciesMatched);
 		userRepository.save(newUser);
+
 		return "added User: " + user + " Currencies: " + currenciesMatched;
 	}
 }
