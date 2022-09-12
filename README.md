@@ -66,8 +66,3 @@ Currency is also added to gallery view 
 When user selects a currency, it is added to the database
 User can remove a currency from database
 User can navigate away from page via the sidebar
-
-
-
-
-
