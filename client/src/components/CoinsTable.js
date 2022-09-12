@@ -1,6 +1,7 @@
 import {
   Container,
   LinearProgress,
+  Pagination,
   Table,
   TableBody,
   TableCell,
@@ -8,8 +9,7 @@ import {
   TableHead,
   TableRow,
   TextField,
-  Typography,
-  Pagination
+  Typography
 } from "@mui/material";
 import axios from "axios";
 import React, {useEffect, useState} from 'react';
@@ -17,8 +17,6 @@ import {useNavigate} from "react-router-dom";
 
 import {CoinList} from "../config/api";
 import {createOrUpdateUser, findUser} from "../data/queries";
-
-
 
 
 export function numberWithCommas(x) {
@@ -105,17 +103,20 @@ const CoinsTable = ({user, reload}) => {
                 <TableHead sx={{backgroundColor: '#97b0ba', borderRadius: 5}}>
                   <TableRow>
                     {
-                      ['Coin', '24h Change', 'Market Cap', 'Market Cap Rank', 'Price'].map((head) => (
-                         <TableCell
-                            sx={{
-                              fontWeight: '700',
-                              color: 'black'
-                            }}
-                            key={head}
-                            // align={head === "Coin" ? "" : "right"}
-                         >
-                           {head}
-                         </TableCell>
+                      ['Coin', '24h Change', 'Market Cap', 'Rank', 'Price'].map((head) => (
+                        <TableCell
+
+                          // align={'center'}
+                          sx={{
+                            fontWeight: '700',
+                            color     : 'black',
+                            fontFamily: 'Chakra Petch'
+                          }}
+                          key={head}
+                          // align={head === "Coin" ? "" : "right"}
+                        >
+                          {head}
+                        </TableCell>
                       ))}
                   </TableRow>
                 </TableHead>
@@ -125,30 +126,36 @@ const CoinsTable = ({user, reload}) => {
                        .map((row) => {
                       const profit = row.price_change_percentage_24h > 0;
                       return (
-                         <TableRow
-                           onClick={() => handleUpdateCurrencies(row.symbol)}
-                           key={row.name}
-                           sx={{
-                             cursor    : 'pointer',
-                             background: (selectedCurrencies.filter(currency => currency === row.symbol.toUpperCase()).length === 1) && '#D9F8C4',
-                             '&:hover' : {
-                               background: '#DFE6E0'
-                             }
-                           }}
+                        <TableRow
+
+                          align={'center'}
+                          onClick={() => handleUpdateCurrencies(row.symbol)}
+                          key={row.name}
+                          sx={{
+                            cursor    : 'pointer',
+                            background: (selectedCurrencies.filter(currency => currency === row.symbol.toUpperCase()).length === 1) && '#D9F8C4',
+
+                            '&:hover': {
+                              background: '#DFE6E0'
+                            }
+                          }}
                          >
                            <TableCell
-                              component={'th'}
-                              scope={'row'}
-                              sx={{
-                                display: 'flex',
-                                gap    : 2
-                              }}
+                             component={'th'}
+                             scope={'row'}
+                             align={'center'}
+                             sx={{
+                               display   : 'flex',
+                               gap       : 2,
+                               fontFamily: 'Chakra Petch'
+                             }}
                            >
                                <img
                                   src={row?.image}
                                   alt={row.name}
                                   height={'50'}
                                   style={{marginBottom: 10}}
+
                                />
                                <div
                                   style={{
@@ -166,24 +173,25 @@ const CoinsTable = ({user, reload}) => {
                                </div>
                            </TableCell>
                            <TableCell
-                              align={'right'}
-                              sx={{
-                                color: profit > 0 ? 'rgb(14,203,129)' : 'red',
-                                fontWeight: 500
-                              }}
+                             align={'left'}
+                             sx={{
+                               color     : profit > 0 ? 'rgb(14,203,129)' : 'red',
+                               fontWeight: 500,
+                               fontFamily: 'Chakra Petch'
+                             }}
                            >
                              {profit && '+'}
                              {row.price_change_percentage_24h.toFixed(2)}%
                            </TableCell>
-                           <TableCell align={'right'}>
-                             {numberWithCommas(row.market_cap.toString().slice(0,6))}M
-                           </TableCell>
-                           <TableCell align={'right'}>
-                             {row.market_cap_rank}
-                           </TableCell>
-                           <TableCell align={'right'}>
+                          <TableCell align={'left'} sx={{fontFamily: 'Chakra Petch'}}>
+                            {numberWithCommas(row.market_cap.toString().slice(0, 6))}M
+                          </TableCell>
+                          <TableCell align={'left'} sx={{fontFamily: 'Chakra Petch'}}>
+                            {row.market_cap_rank}
+                          </TableCell>
+                          <TableCell align={'left'} sx={{fontFamily: 'Chakra Petch'}}>
                             $ {numberWithCommas(row.current_price.toFixed(2))}
-                           </TableCell>
+                          </TableCell>
                          </TableRow>
                       )
                     })}

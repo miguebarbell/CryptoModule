@@ -11,22 +11,24 @@ const Banner = () => {
           flexDirection : 'column',
           paddingTop    : 15,
           justifyContent: 'space-around',
-          fontFamily    : 'Montserrat'
         }}
      >
        <Box
           sx={{
-            display: 'flex',
-            height: '40%',
-            flexDirection: 'column',
+            display       : 'flex',
+            height        : '40%',
+            flexDirection : 'column',
             justifyContent: 'center',
-            textAlign: 'center'
+            textAlign     : 'center'
+
           }}>
          <Typography
             variant={'h2'}
             sx={{
-              fontWeight: 'bold',
+              fontWeight  : 'bold',
               marginBottom: 1,
+              fontFamily  : 'Chakra Petch'
+
             }}
          >
             Crypto Tracker
@@ -34,10 +36,12 @@ const Banner = () => {
          <Typography
             variant={'subtitle2'}
             sx={{
-              color: 'darkgrey',
+              color        : 'darkgrey',
               textTransform: 'capitalize',
-              marginBottom:10,
-              fontSize:20
+              marginBottom : 10,
+              fontSize     : 20,
+
+              fontFamily: 'Chakra Petch'
             }}
          >
            Gather data on your favorite crypto

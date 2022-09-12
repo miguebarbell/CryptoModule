@@ -2,7 +2,9 @@ export const divStyles = {
 	display       : "flex",
 	flexDirection : "column",
 	alignItems    : "center",
-	justifyContent: "center"
+	justifyContent: "center",
+	// fontFamily: 'Montserrat'
+	fontFamily: 'Chakra Petch'
 };
 const AddCurrencies = () => {
 
