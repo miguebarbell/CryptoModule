@@ -8,13 +8,18 @@ import {
   TableHead,
   TableRow,
   TextField,
-  Typography
+  Typography,
+  Pagination
 } from "@mui/material";
 import axios from "axios";
 import React, {useEffect, useState} from 'react';
 import {useNavigate} from "react-router-dom";
+
 import {CoinList} from "../config/api";
 import {createOrUpdateUser, findUser} from "../data/queries";
+
+
+
 
 export function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -24,6 +29,10 @@ const CoinsTable = ({user, reload}) => {
   const [coins, setCoins] = useState([]);
   const [loading, setLoading] = useState();
   const [search, setSearch] = useState('');
+
+// PAGINATION
+  const [page, setPage] = useState(1);
+
   const history = useNavigate();
 
   const curr = 'usd';
@@ -93,7 +102,7 @@ const CoinsTable = ({user, reload}) => {
               <LinearProgress sx={{backgroundColor: 'gold'}}/>
            ) : (
               <Table>
-                <TableHead sx={{backgroundColor: '#EEBC1D', borderRadius: 5}}>
+                <TableHead sx={{backgroundColor: '#97b0ba', borderRadius: 5}}>
                   <TableRow>
                     {
                       ['Coin', '24h Change', 'Market Cap', 'Market Cap Rank', 'Price'].map((head) => (
@@ -103,7 +112,7 @@ const CoinsTable = ({user, reload}) => {
                               color: 'black'
                             }}
                             key={head}
-                            align={head === "Coin" ? "" : "right"}
+                            // align={head === "Coin" ? "" : "right"}
                          >
                            {head}
                          </TableCell>
@@ -111,7 +120,9 @@ const CoinsTable = ({user, reload}) => {
                   </TableRow>
                 </TableHead>
                   <TableBody>
-                    {handleSearch().map((row) => {
+                    {handleSearch()
+                       .slice((page-1) * 10, (page-1) * 10 + 10)
+                       .map((row) => {
                       const profit = row.price_change_percentage_24h > 0;
                       return (
                          <TableRow
@@ -181,6 +192,22 @@ const CoinsTable = ({user, reload}) => {
            )
          }
        </TableContainer>
+       <Pagination
+          sx={{
+            pt: 5,
+            pr:10,
+            pb:5,
+            pl:10,
+            width:'100%',
+            display:'flex',
+            justifyContent:'center'
+          }}
+          count={parseInt((handleSearch()?.length /10).toFixed(0))}
+       onChange={(_, value) => {
+         setPage(value);
+         window.scroll(0,450);
+       }}
+       />
      </Container>
   )
 }
