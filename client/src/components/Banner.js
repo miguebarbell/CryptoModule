@@ -1,32 +1,34 @@
-import React from 'react'
 import {Box, Container, Typography} from "@mui/material";
+import React from 'react';
 import Carousel from "./Carousel";
 
 const Banner = () => {
   return (
      <Container
         sx={{
-          height: 400,
-          display: 'flex',
-          flexDirection: 'column',
-          paddingTop: 15,
-          justifyContent: 'space-around'
+          height        : 400,
+          display       : 'flex',
+          flexDirection : 'column',
+          paddingTop    : 15,
+          justifyContent: 'space-around',
         }}
      >
        <Box
           sx={{
-            display: 'flex',
-            height: '40%',
-            flexDirection: 'column',
+            display       : 'flex',
+            height        : '40%',
+            flexDirection : 'column',
             justifyContent: 'center',
-            textAlign: 'center'
+            textAlign     : 'center'
+
           }}>
          <Typography
             variant={'h2'}
             sx={{
-              fontWeight: 'bold',
+              fontWeight  : 'bold',
               marginBottom: 1,
-              fontFamily: 'Monsterrat'
+              fontFamily  : 'Chakra Petch'
+
             }}
          >
             Crypto Tracker
@@ -34,11 +36,12 @@ const Banner = () => {
          <Typography
             variant={'subtitle2'}
             sx={{
-              color: 'darkgrey',
+              color        : 'darkgrey',
               textTransform: 'capitalize',
-              fontFamily: 'Monsterrat',
-              marginBottom:10,
-              fontSize:20
+              marginBottom : 10,
+              fontSize     : 20,
+
+              fontFamily: 'Chakra Petch'
             }}
          >
            Gather data on your favorite crypto

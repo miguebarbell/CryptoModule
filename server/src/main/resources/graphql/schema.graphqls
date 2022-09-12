@@ -16,7 +16,7 @@ type CryptoCurrency {
 }
 
 type CryptoUser {
-    user : String!
+    userEmail : String!
     currencies : [String]
 }
 

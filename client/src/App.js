@@ -1,37 +1,43 @@
-import "./App.css"
-import {Route, Routes, Link} from "react-router-dom";
-import Homepage from "./Pages/Homepage";
-import CoinPage from "./Pages/CoinPage";
-import Header from "./components/Header";
 import {Container} from "@mui/material";
+import {useEffect, useState} from "react";
+import WebFont from 'webfontloader';
+import "./App.css";
+import Banner from "./components/Banner";
+import Chart from "./components/Chart";
+import CoinsTable from "./components/CoinsTable";
+import PleaseLogin from "./components/PleaseLogin";
 
 function App() {
-
+  // const userFromSecurity = "crypto@maniac.gov";
+  // const userFromSecurity = "jerry@usmc.gov";
+  // const userFromSecurity = "";
+  const userFromSecurity = "miguel@debloat.us";
+  const [reload, setReload] = useState(true);
+  useEffect(() => {
+    WebFont.load({
+                   google: {
+                     families: ['Montserrat', 'Chakra Petch']
+                   }
+                 });
+  }, []);
+  useEffect(() => {
+    setReload(true);
+  }, [reload]);
   return (
-     <Container
-        sx={{
-          backgroundColor: '#fff',
-          color: 'black',
-          minHeight: '100vh'
-        }}
-     >
-       <Header/>
-       {/*<nav>*/}
-       {/*  <ul>*/}
-       {/*    <li>*/}
-       {/*      <Link to={'/'}>home link</Link>*/}
-       {/*    </li>*/}
-       {/*    <li>*/}
-       {/*      <Link to={'/coins'}>coins link</Link>*/}
-       {/*    </li>*/}
-       {/*  </ul>*/}
-       {/*</nav>*/}
-       <Routes>
-         <Route exact path={'/'} element={<Homepage/>}/>
-         <Route path={'/coins/:id'} element={<CoinPage/>}/>
-
-       </Routes>
-     </Container>
+    <Container
+      sx={{
+        backgroundColor: '#FFF',
+        color          : 'black',
+        minHeight      : '100vh'
+      }}
+    >{userFromSecurity ?
+      <>
+        <Banner/>
+        <Chart user={userFromSecurity} reload={reload}/>
+        <CoinsTable user={userFromSecurity} reload={setReload}/> </> :
+      <PleaseLogin/>
+    }
+    </Container>
   );
 
 }
