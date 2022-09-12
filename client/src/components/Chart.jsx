@@ -13,6 +13,7 @@ import {useEffect, useState} from "react";
 import {Line} from "react-chartjs-2";
 import {findUserr} from "../data/findUser";
 import {cryptoDaily, findUser} from "../data/queries";
+import AddCurrencies from "./AddCurrencies";
 
 ChartJS.register(
 	CategoryScale,
@@ -94,7 +95,6 @@ const Chart = ({user, reload}) => {
 			}
 		}
 	};
-	console.log(data.datasets);
 	return (
 		<>
 			{
@@ -106,7 +106,7 @@ const Chart = ({user, reload}) => {
 					options={options}
 				/> :
 				<CircularProgress size={200} thickness={2} sx={{padding: '3rem'}}/>
-				                           : <h1>select some crypto below</h1>
+				                           : <AddCurrencies/>
 			}
 		</>
 	);
