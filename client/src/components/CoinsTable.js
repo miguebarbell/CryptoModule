@@ -34,9 +34,6 @@ const CoinsTable = () => {
      }, [curr]
   );
 
-  // console.log(coins)
-  // console.log(Array.isArray(coins));
-
   const handleSearch = () => {
     return coins.filter(
        (coin) =>
@@ -136,7 +133,7 @@ const CoinsTable = () => {
                              {row.price_change_percentage_24h.toFixed(2)}%
                            </TableCell>
                            <TableCell align={'right'}>
-                             {numberWithCommas(row.market_cap.toString().slice(0,6))}M
+                            $ {numberWithCommas(row.market_cap.toString())}
                            </TableCell>
                            <TableCell align={'right'}>
                              {row.market_cap_rank}
