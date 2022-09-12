@@ -91,7 +91,7 @@ const Chart = ({user, reload}) => {
 			},
 			title : {
 				display: true,
-				text   : "Your Currencies"
+				text: "Currencies Watching prices in USD"
 			}
 		}
 	};
