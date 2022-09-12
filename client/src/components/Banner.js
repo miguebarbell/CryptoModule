@@ -1,16 +1,17 @@
-import React from 'react'
 import {Box, Container, Typography} from "@mui/material";
+import React from 'react';
 import Carousel from "./Carousel";
 
 const Banner = () => {
   return (
      <Container
         sx={{
-          height: 400,
-          display: 'flex',
-          flexDirection: 'column',
-          paddingTop: 15,
-          justifyContent: 'space-around'
+          height        : 400,
+          display       : 'flex',
+          flexDirection : 'column',
+          paddingTop    : 15,
+          justifyContent: 'space-around',
+          fontFamily    : 'Montserrat'
         }}
      >
        <Box
@@ -26,7 +27,6 @@ const Banner = () => {
             sx={{
               fontWeight: 'bold',
               marginBottom: 1,
-              fontFamily: 'Monsterrat'
             }}
          >
             Crypto Tracker
@@ -36,7 +36,6 @@ const Banner = () => {
             sx={{
               color: 'darkgrey',
               textTransform: 'capitalize',
-              fontFamily: 'Monsterrat',
               marginBottom:10,
               fontSize:20
             }}
