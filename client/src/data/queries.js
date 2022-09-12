@@ -51,3 +51,12 @@ export const cryptoNews = async (currencies) => {
 	const result = await axios.post(API_URL, {query});
 	return result.data;
 };
+
+export const createOrUpdateUser = async (user, currencies) => {
+	const mutation = `mutation {
+      cryptoAddUser(user : "${user}", currencies : ${JSON.stringify(currencies).toString()}) 
+		}
+	`;
+	const result = await axios.post(API_URL, {query: mutation});
+	return result.data;
+};

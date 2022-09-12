@@ -24,11 +24,12 @@ ChartJS.register(
 	Legend
 );
 const labels = [];
-const dataset = [];
+let dataset = [];
 const Chart = ({user, reload}) => {
 	const [cryptoUser, setCryptoUser] = useState(findUserr);
 	const [hackyUpdates, setHackyUpdates] = useState(false);
 	const fetch = async () => {
+		dataset = [];
 		try {
 			const userPromised = await findUser(user);
 			setCryptoUser(userPromised.data.cryptoUser);
@@ -48,7 +49,6 @@ const Chart = ({user, reload}) => {
 							borderColor    : colors[colors.length - 1 - index],
 							pointRadius    : 1
 						};
-						// bug: this cause problem when you unselect a currency to follow
 						if (dataset.map(values => values.label)
 						           .filter(value => value === currency).length === 0) dataset.push(chartdata);
 					} catch (err) {
