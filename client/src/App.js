@@ -34,7 +34,8 @@ function App() {
       <>
         <Banner/>
         <Chart user={userFromSecurity} reload={reload}/>
-        <CoinsTable user={userFromSecurity} reload={setReload}/> </> :
+        <CoinsTable user={userFromSecurity} reload={setReload}/>
+      </> :
       <PleaseLogin/>
     }
     </Container>
