@@ -2,6 +2,7 @@ import {Box, Container} from "@mui/material";
 import axios from "axios";
 import React, {useEffect, useState} from 'react';
 import AliceCarousel from "react-alice-carousel";
+import 'react-alice-carousel/lib/alice-carousel.css';
 import {TrendingCoins} from "../config/api";
 
 const Carousel = () => {

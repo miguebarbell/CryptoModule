@@ -13,7 +13,6 @@ import {
 } from "@mui/material";
 import axios from "axios";
 import React, {useEffect, useState} from 'react';
-import {useNavigate} from "react-router-dom";
 
 import {CoinList} from "../config/api";
 import {createOrUpdateUser, findUser} from "../data/queries";
@@ -31,7 +30,6 @@ const CoinsTable = ({user, reload}) => {
 // PAGINATION
   const [page, setPage] = useState(1);
 
-  const history = useNavigate();
 
   const curr = 'usd';
 
