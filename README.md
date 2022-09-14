@@ -1,10 +1,5 @@
-The proposing of this repo is centralizing all the resources, documentation and code for the homework.
 
-
-## Folders
-
-### /documentation:
--
+![workflow](./documentation/workflow.gif)
 
 ### /client:
 - Made in react

@@ -13,7 +13,6 @@ import {
 } from "@mui/material";
 import axios from "axios";
 import React, {useEffect, useState} from 'react';
-import {useNavigate} from "react-router-dom";
 
 import {CoinList} from "../config/api";
 import {createOrUpdateUser, findUser} from "../data/queries";
@@ -31,7 +30,6 @@ const CoinsTable = ({user, reload}) => {
 // PAGINATION
   const [page, setPage] = useState(1);
 
-  const history = useNavigate();
 
   const curr = 'usd';
 
@@ -86,14 +84,14 @@ const CoinsTable = ({user, reload}) => {
     <Container style={{textAlign: 'center'}}
                sx={{marginTop: 5}}>
       <Typography variant={'h4'}
-                  style={{margin: 18, fontFamily: 'Monsterrat'}}>
+                  style={{margin: 18, fontFamily: 'Montserrat'}}>
         {/*Cryptocurrency Prices by Market Cap*/}
       </Typography>
       <TextField label={'search for crypto..'}
                  variant={'outlined'}
                  sx={{marginBottom: 5, width: '100%'}}
-                  onChange={(e) => setSearch(e.target.value)}
-       />
+                 onChange={(e) => setSearch(e.target.value)}
+      />
        <TableContainer>
          {
            loading ? (
@@ -184,7 +182,7 @@ const CoinsTable = ({user, reload}) => {
                              {row.price_change_percentage_24h.toFixed(2)}%
                            </TableCell>
                           <TableCell align={'left'} sx={{fontFamily: 'Chakra Petch'}}>
-                            {numberWithCommas(row.market_cap.toString().slice(0, 6))}M
+                            $ {numberWithCommas(row.market_cap.toString())}
                           </TableCell>
                           <TableCell align={'left'} sx={{fontFamily: 'Chakra Petch'}}>
                             {row.market_cap_rank}
