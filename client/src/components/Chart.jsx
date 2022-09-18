@@ -9,6 +9,7 @@ import {
 	Title,
 	Tooltip
 } from 'chart.js';
+// import {callback} from "chart.js/types/helpers";
 import {useEffect, useState} from "react";
 import {Line} from "react-chartjs-2";
 import {findUserr} from "../data/findUser";
@@ -96,9 +97,12 @@ const Chart = ({user, reload}) => {
 				}
 			},
 			y: {
-				grid: {
+				grid : {
 					color      : 'rgba(255,255,255,0.1)',
 					borderColor: 'rgba(110, 250,19, 0.25)'
+				},
+				ticks: {
+					callback: value => `$ ${value}`
 				}
 			}
 		},
@@ -112,7 +116,7 @@ const Chart = ({user, reload}) => {
 			},
 			title : {
 				display: true,
-				text: "Currencies Watching prices in USD"
+				// text: "Currencies Watching prices in USD"
 			}
 		}
 	};
