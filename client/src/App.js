@@ -6,6 +6,8 @@ import Banner from "./components/Banner";
 import Chart from "./components/Chart";
 import CoinsTable from "./components/CoinsTable";
 import PleaseLogin from "./components/PleaseLogin";
+import BarChart from "./components/BarChart";
+import Image from "./img/two.jpg";
 
 function App() {
   // const userFromSecurity = "crypto@maniac.gov";
@@ -28,11 +30,14 @@ function App() {
       sx={{
         backgroundColor: '#FFF',
         color          : 'black',
-        minHeight      : '100vh'
+        minHeight      : '100vh',
+
+        backgroundImage: `url(${Image})`
       }}
     >{userFromSecurity ?
       <>
         <Banner/>
+        <BarChart/>
         <Chart user={userFromSecurity} reload={reload}/>
         <CoinsTable user={userFromSecurity} reload={setReload}/>
       </> :

@@ -1,8 +1,10 @@
-import {Box, Container, Typography} from "@mui/material";
+import {Box, Container, makeStyles, Typography} from "@mui/material";
 import React from 'react';
 import Carousel from "./Carousel";
 
+
 const Banner = () => {
+
   return (
      <Container
         sx={{
@@ -19,24 +21,24 @@ const Banner = () => {
             height        : '40%',
             flexDirection : 'column',
             justifyContent: 'center',
-            textAlign     : 'center'
-
-          }}>
+            textAlign     : 'center',
+          }}
+       >
          <Typography
             variant={'h2'}
             sx={{
               fontWeight  : 'bold',
               marginBottom: 1,
-              fontFamily  : 'Chakra Petch'
-
+              fontFamily  : 'Chakra Petch',
+              color:'lightgrey'
             }}
          >
-            Crypto Tracker
+            Digital Assets
          </Typography>
          <Typography
             variant={'subtitle2'}
             sx={{
-              color        : 'darkgrey',
+              color        : 'blue',
               textTransform: 'capitalize',
               marginBottom : 10,
               fontSize     : 20,
@@ -44,9 +46,10 @@ const Banner = () => {
               fontFamily: 'Chakra Petch'
             }}
          >
-           Gather data on your favorite crypto
+           Gather data on trending cryptocurrency
          </Typography>
        </Box>
+
        <Carousel/>
      </Container>
   )
