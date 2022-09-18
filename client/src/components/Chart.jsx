@@ -9,6 +9,7 @@ import {
 	Title,
 	Tooltip
 } from 'chart.js';
+// import {callback} from "chart.js/types/helpers";
 import {useEffect, useState} from "react";
 import {Line} from "react-chartjs-2";
 import {findUserr} from "../data/findUser";
@@ -84,21 +85,25 @@ const Chart = ({user, reload}) => {
 		datasets: dataset
 	};
 	const options = {
-		// scales: {
-		// 	xAxes: [{gridLines: { color: "#131c2b" }}],
-		// 	yAxes: [{gridLines: { color: "#131c2b" }}]
-		// 	},
 		scales    : {
 			x: {
-				grid: {
-					color      : 'rgba(255,255,255,0.1)',
+				grid : {
+					color      : 'rgba(255,255,255,0.2)',
 					borderColor: 'rgba(110, 250,19, 0.25)'
+					// pointRadius: 0.5,
+				},
+				ticks: {
+					color: 'white'
 				}
 			},
 			y: {
-				grid: {
-					color      : 'rgba(255,255,255,0.1)',
+				grid : {
+					color      : 'rgba(255,255,255,0.2)',
 					borderColor: 'rgba(110, 250,19, 0.25)'
+				},
+				ticks: {
+					callback: value => `$ ${value}`,
+					color   : 'white'
 				}
 			}
 		},
@@ -111,10 +116,17 @@ const Chart = ({user, reload}) => {
 				position: 'top'
 			},
 			title : {
-				display: true,
-				text: "Currencies Watching prices in USD"
+				display: true
+				// text: "Currencies Watching prices in USD"
 			}
 		}
+	};
+	const chartStyle = {
+		backgroundColor: 'rgba(0,0,0,0.8)',
+		borderRadius   : '4px',
+		padding        : '0 1rem 1rem 1rem',
+		backdropFilter : 'blur(10px)'
+
 	};
 	return (
 		<>
@@ -125,6 +137,7 @@ const Chart = ({user, reload}) => {
 					// type='line'
 					data={data}
 					options={options}
+					style={chartStyle}
 				/> :
 				<CircularProgress size={200} thickness={2} sx={{padding: '3rem'}}/>
 				                           : <AddCurrencies/>

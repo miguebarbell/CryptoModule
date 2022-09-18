@@ -4,7 +4,9 @@ export const divStyles = {
 	alignItems    : "center",
 	justifyContent: "center",
 	// fontFamily: 'Montserrat'
-	fontFamily: 'Chakra Petch'
+	fontFamily: 'Chakra Petch',
+	// backdropFilter: 'blur(5px)'
+	color: 'white'
 };
 const AddCurrencies = () => {
 
