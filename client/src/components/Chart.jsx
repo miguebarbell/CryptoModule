@@ -48,7 +48,7 @@ const Chart = ({user, reload}) => {
 							data           : data,
 							backgroundColor: colors[index],
 							borderColor    : colors[colors.length - 1 - index],
-							pointRadius    : 1
+							pointRadius: 0.5
 						};
 						if (dataset.map(values => values.label)
 						           .filter(value => value === currency).length === 0) dataset.push(chartdata);
