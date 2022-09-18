@@ -56,6 +56,12 @@ public class CryptCurrencyController {
 		LocalDate updated = LocalDate.now();
 		Cache updatedCrypto = new Cache(currency, updated, dailyValues);
 		cache.add(updatedCrypto);
+		// reverse ordering
+//		List ordered = new ArrayList<>();
+//		for (int i = dailyValues.size() - 1; i <= 0; i--) {
+//			ordered.add(dailyValues.get(i));
+//		}
+//		System.out.println("ordered = " + dailyValues.get(1));
 		return dailyValues;
 	}
 

@@ -1,16 +1,17 @@
-import React, {useEffect, useState} from 'react';
-import {Bar} from 'react-chartjs-2'
+// import {color} from "chart.js/types/helpers";
 import {Box, Card, CardContent, CardHeader, Divider, useMediaQuery, useTheme} from "@mui/material";
-import axios from "axios";
 import {deepPurple, lightBlue, lime, pink, purple, teal} from "@mui/material/colors";
-import {BarElement, CategoryScale, LinearScale, Chart} from "chart.js";
-import numeral from 'numeral'
+import axios from "axios";
+import {BarElement, CategoryScale, Chart, LinearScale} from "chart.js";
 import ChartDataLabels from 'chartjs-plugin-datalabels';
+import numeral from 'numeral';
+import React, {useEffect, useState} from 'react';
+import {Bar} from 'react-chartjs-2';
 
 Chart.register(
-   BarElement,
-   CategoryScale,
-   LinearScale
+  BarElement,
+  CategoryScale,
+  LinearScale
 );
 
 const BarChart = () => {
@@ -88,13 +89,14 @@ const BarChart = () => {
     scales: {
       x: {
         ticks: {
-          color: theme.palette.text.primary,
+          // color: theme.palette.text.primary,
+          color      : 'white',
           maxRotation: 45,
-          minRotation: 45,
+          minRotation: 45
         },
         title: {
           display: true,
-          text: 'Cryptocurrencies',
+          // text: 'Cryptocurrencies',
           color: theme.palette.text.primary,
           font: {
             weight: 'bold',
@@ -105,39 +107,46 @@ const BarChart = () => {
       },
       y: {
         ticks: {
-          color: theme.palette.text.primary,
-          padding: 10,
+          // color: theme.palette.text.primary,
+          color   : 'white',
+          padding : 10,
           callback: (value) => numeral(value).format('$0,0.00')
         },
         display: true,
         borderDash: [5, 5],
         title: {
           display: true,
-          text: 'Current price',
-          color: theme.palette.text.primary,
-          font: {
+          // text: 'Current price',
+          color  : theme.palette.text.primary,
+          font   : {
             weight: 'bold',
-            size: 18,
+            size  : 18
           },
-          padding: 10,
+          padding: 10
         },
       },
     },
   };
 
+  const barchartStyle = {
+    backgroundColor: 'rgba(0,0,0,0.8)',
+    backdropFilter : 'blur(7px)',
+    color          : 'white'
+
+  };
 
   return (
-     <Card sx={{backgroundColor:'lightgrey'}}>
-       <CardHeader
-          sx={{fontFamily:'Chakra Petch'}}
-          title='Top 10 Most Expensive Cryptocurrencies'
-          subheader='Top 10 Most Expensive Cryptocurrencies Measured By Their Market Price'
-       />
-       <Divider />
-       <CardContent>
-         <Box sx={{ height: 400, position: 'relative', fontFamily:'Chakra Petch' }}>
-           <Bar
-              data={data}
+    <Card sx={barchartStyle}>
+      <CardHeader
+        sx={{fontFamily: 'Chakra Petch'}}
+        title="Top 10 Most Expensive Cryptocurrencies"
+        // subheader='Top 10 Most Expensive Cryptocurrencies Measured By Their Market Price'
+      />
+      <Divider/>
+      <CardContent>
+        <Box sx={{height: 400, position: 'relative', fontFamily: 'Chakra Petch'}}>
+          <Bar
+            data={data}
               options={options}
               plugins={[ChartDataLabels]}
            />

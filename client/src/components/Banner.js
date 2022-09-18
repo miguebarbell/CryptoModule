@@ -1,6 +1,5 @@
-import {Box, Container, makeStyles, Typography} from "@mui/material";
+import {Box, Container, Typography} from "@mui/material";
 import React from 'react';
-import Carousel from "./Carousel";
 
 
 const Banner = () => {
@@ -50,7 +49,7 @@ const Banner = () => {
          </Typography>
        </Box>
 
-       <Carousel/>
+       {/*<Carousel/>*/}
      </Container>
   )
 }

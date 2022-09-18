@@ -87,16 +87,23 @@ const CoinsTable = ({user, reload}) => {
                    style={{margin: 18, fontFamily: 'Montserrat'}}>
          {/*Cryptocurrency Prices by Market Cap*/}
        </Typography>
-       <TextField label={'search for crypto..'}
+       <TextField label={'search for your currency...'}
                   variant={'outlined'}
-                  sx={{borderRadius:1 ,marginBottom: 5, width: '100%', backgroundColor:'lightgrey'}}
+                  sx={{
+                    borderRadius   : 1,
+                    marginBottom   : 5,
+                    width          : '100%',
+                    backgroundColor: 'rgba(255, 255,255, 0.4)',
+                    backdropFilter : 'blur(7px)'
+                  }}
                   onChange={(e) => setSearch(e.target.value)}
+                  color="error"
        />
        <TableContainer sx={{
-         borderRadius: 1,
-         borderStyle: 'solid',
-         boxShadow: 3,
-         backgroundColor:'lightblue'
+         borderRadius   : 2,
+         borderStyle    : 'solid',
+         boxShadow      : 3,
+         backgroundColor: 'lightblue'
        }}>
          {
            loading ? (
@@ -206,13 +213,18 @@ const CoinsTable = ({user, reload}) => {
        </TableContainer>
        <Pagination color={'secondary'}
           sx={{
-            pt: 5,
-            pr: 10,
-            pb: 5,
-            pl: 10,
-            width: '100%',
-            display: 'flex',
-            justifyContent: 'center'
+            pt            : 5,
+            pr            : 10,
+            pb            : 5,
+            pl            : 10,
+            width         : '100%',
+            display       : 'flex',
+            justifyContent: 'center',
+            color         : 'rgb(255, 255, 255)',
+            button        : {
+              color         : '#fff !important',
+              backdropFilter: 'blur(5px)'
+            }
           }}
           count={parseInt((handleSearch()?.length / 10).toFixed(0))}
           onChange={(_, value) => {

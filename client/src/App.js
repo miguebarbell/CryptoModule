@@ -3,10 +3,10 @@ import {useEffect, useState} from "react";
 import WebFont from 'webfontloader';
 import "./App.css";
 import Banner from "./components/Banner";
+import BarChart from "./components/BarChart";
 import Chart from "./components/Chart";
 import CoinsTable from "./components/CoinsTable";
 import PleaseLogin from "./components/PleaseLogin";
-import BarChart from "./components/BarChart";
 import Image from "./img/two.jpg";
 
 function App() {
@@ -40,6 +40,7 @@ function App() {
         <BarChart/>
         <Chart user={userFromSecurity} reload={reload}/>
         <CoinsTable user={userFromSecurity} reload={setReload}/>
+
       </> :
       <PleaseLogin/>
     }
