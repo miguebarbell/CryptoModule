@@ -74,13 +74,34 @@ const Chart = ({user, reload}) => {
 		"rgba(39, 223, 245, 0.5)",
 		"rgba(245, 236, 39, 0.5)",
 		"rgba(39, 73, 245, 0.5)",
-		"rgba(245, 142, 39, 0.5"
+		"rgba(245, 142, 39, 0.5",
+		"rgba(255, 255, 255, 0.5)",
+		"rgba(19, 255, 226, 0.5)",
+		"rgba(245, 250, 19, 0.5)"
 	];
 	const data = {
 		labels,
 		datasets: dataset
 	};
 	const options = {
+		// scales: {
+		// 	xAxes: [{gridLines: { color: "#131c2b" }}],
+		// 	yAxes: [{gridLines: { color: "#131c2b" }}]
+		// 	},
+		scales    : {
+			x: {
+				grid: {
+					color      : 'rgba(255,255,255,0.1)',
+					borderColor: 'rgba(110, 250,19, 0.25)'
+				}
+			},
+			y: {
+				grid: {
+					color      : 'rgba(255,255,255,0.1)',
+					borderColor: 'rgba(110, 250,19, 0.25)'
+				}
+			}
+		},
 		responsive: true,
 		plugins   : {
 			// filler: {
