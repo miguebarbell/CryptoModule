@@ -9,6 +9,7 @@ import {
 	Title,
 	Tooltip
 } from 'chart.js';
+// import {callback} from "chart.js/types/helpers";
 import {useEffect, useState} from "react";
 import {Line} from "react-chartjs-2";
 import {findUserr} from "../data/findUser";
@@ -48,7 +49,7 @@ const Chart = ({user, reload}) => {
 							data           : data,
 							backgroundColor: colors[index],
 							borderColor    : colors[colors.length - 1 - index],
-							pointRadius    : 1
+							pointRadius: 0.5
 						};
 						if (dataset.map(values => values.label)
 						           .filter(value => value === currency).length === 0) dataset.push(chartdata);
@@ -74,13 +75,37 @@ const Chart = ({user, reload}) => {
 		"rgba(39, 223, 245, 0.5)",
 		"rgba(245, 236, 39, 0.5)",
 		"rgba(39, 73, 245, 0.5)",
-		"rgba(245, 142, 39, 0.5"
+		"rgba(245, 142, 39, 0.5",
+		"rgba(255, 255, 255, 0.5)",
+		"rgba(19, 255, 226, 0.5)",
+		"rgba(245, 250, 19, 0.5)"
 	];
 	const data = {
 		labels,
 		datasets: dataset
 	};
 	const options = {
+		// scales: {
+		// 	xAxes: [{gridLines: { color: "#131c2b" }}],
+		// 	yAxes: [{gridLines: { color: "#131c2b" }}]
+		// 	},
+		scales    : {
+			x: {
+				grid: {
+					color      : 'rgba(255,255,255,0.1)',
+					borderColor: 'rgba(110, 250,19, 0.25)'
+				}
+			},
+			y: {
+				grid : {
+					color      : 'rgba(255,255,255,0.1)',
+					borderColor: 'rgba(110, 250,19, 0.25)'
+				},
+				ticks: {
+					callback: value => `$ ${value}`
+				}
+			}
+		},
 		responsive: true,
 		plugins   : {
 			// filler: {
@@ -91,7 +116,7 @@ const Chart = ({user, reload}) => {
 			},
 			title : {
 				display: true,
-				text: "Currencies Watching prices in USD"
+				// text: "Currencies Watching prices in USD"
 			}
 		}
 	};
